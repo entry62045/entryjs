@@ -672,6 +672,39 @@ return script.callReturn()
 ////////////////////
 
 ////////////////////
+addBlock('entry_playmp3', '%1 링크를 재생하기%2', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`mp3 file link`]
+},
+null
+],
+map: {
+CONTENT: 0
+}
+}, 'text', (sprite, script) => {
+var audio = new Audio(script.getValue('CONTENT', script))
+audio.play()
+return script.callReturn()
+})
+////////////////////
+
+////////////////////
 addBlock('entry_console_clear', '엔트리 콘솔 모두 지우기%1', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
