@@ -695,11 +695,11 @@ params: [`mp3 file link`]
 null
 ],
 map: {
-CONTENT: 0
+ENTRYAUDIO: 0
 }
 }, 'text', (sprite, script) => {
-var audio = new Audio(script.getValue('CONTENT', script))
-audio.play()
+var entrymp3audio = new Audio(script.getValue('ENTRYAUDIO', script))
+entrymp3audio.play()
 return script.callReturn()
 })
 ////////////////////
