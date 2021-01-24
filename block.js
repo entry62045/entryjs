@@ -437,19 +437,11 @@ document.title = script.getValue('PAGETITLE', script)
 
 
 ////////////////////
-addBlock('entry_popup', '가로 %1, 세로 %2의 %3 팝업 열기%4', {
+addBlock('entry_popup', '%1 사이트 열기%2', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
 }, {
 params: [
-{
-type: 'Block',
-accept: 'string'
-},
-{
-type: 'Block',
-accept: 'string'
-},
 {
 type: 'Block',
 accept: 'string'
@@ -463,25 +455,63 @@ size: 11,
 def: [
 {
 type: 'text',
-params: [`800`]
-},
-{
-type: 'text',
-params: [`450`]
-},
-{
-type: 'text',
 params: [`https://playentry.org`]
 },
 null
 ],
 map: {
-PAGEWIDTH: 0,
-PAGEHEIGHT: 0,
 PAGEURL: 0
 }
 }, 'text', (sprite, script) => {
-window.open(script.getValue('PAGEURL', script),'Entry popup','width=' + script.getValue('PAGEWIDTH', script) + ', height=' + script.getValue('PAGEHEIGHT', script))
+open(script.getValue('PAGEURL', script))
+})
+////////////////////
+
+////////////////////
+addBlock('entry_donotrefresh', '새로고침 막기%1', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [],
+map: {}
+}, 'text', (sprite, script) => {
+function doNotReload(){
+if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) //ctrl+N , ctrl+R
+|| (event.keyCode == 116) // function F5
+{
+event.keyCode = 0;
+event.cancelBubble = true;
+event.returnValue = false;
+}
+}
+document.onkeydown = doNotReload;
+})
+////////////////////
+
+////////////////////
+addBlock('entry_pauseaudio', '오디오 정지하기%1', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [],
+map: {}
+}, 'text', (sprite, script) => {
+entrymp3audio.pause();
+entrymp3audio.currentTime = 0;
 })
 ////////////////////
 
@@ -491,7 +521,9 @@ category: 'API', blocks: [
 'entry_playmp3',
 'entry_googlesearch',
 'entry_setpagetitle',
-'entry_popup'
+'entry_popup',
+'entry_donotrefresh',
+'entry_pauseaudio'
 ]
 });
 
@@ -509,11 +541,11 @@ margin-bottom: 1px;
 }
 .entrySelectedCategory#entryCategoryAPI {
 background-image: url(/lib/entry-js/images/hardware_on.svg);
-background-color: #e3591e;
-border-color: #e3591e;
+background-color: #0000;
+border-color: #0000;
 color: #ffff;
 }
 </style>
 `)
 
-$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.1"),console.log("스페셜블럭 작동이 시작되었습니다.");
+$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.2"),console.log("스페셜블럭 작동이 시작되었습니다.");
