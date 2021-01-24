@@ -1,6 +1,4 @@
-//Entblocks 1.0 기반 블록입니다
-//모든 코드는 2차 제작, 2차 배포 가능합니다
-//스페셜블록은 무료로 제공됩니다. (단, 광고가 있을 수 있습니다)
+// john0817님의 스페셜블럭 코드를 사용하였습니다.
 Entry.staticBlocks = [
 {
 category: 'start',
@@ -406,10 +404,94 @@ open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
 ////////////////////
 
 
+////////////////////
+addBlock('entry_setpagetitle', '페이지 제목을 %1 내용으로 바꾸기%2', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`엔트리`]
+},
+null
+],
+map: {
+PAGETITLE: 0
+}
+}, 'text', (sprite, script) => {
+document.title = script.getValue('PAGETITLE', script)
+})
+////////////////////
+
+
+////////////////////
+addBlock('entry_popup', '가로 %1, 세로 %2의 %3 팝업 열기%4', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`800`]
+},
+{
+type: 'text',
+params: [`450`]
+},
+{
+type: 'text',
+params: [`https://playentry.org`]
+},
+null
+],
+map: {
+PAGEWIDTH: 0,
+PAGEHEIGHT: 0,
+PAGEURL: 0
+}
+}, 'text', (sprite, script) => {
+window.open(script.getValue('PAGEURL', script),'Entry popup','width=' + script.getValue('PAGEWIDTH', script) + ', height=' + script.getValue('PAGEHEIGHT', script))
+})
+////////////////////
+
+
 Entry.staticBlocks.push({
 category: 'API', blocks: [
 'entry_playmp3',
-'entry_googlesearch'
+'entry_googlesearch',
+'entry_setpagetitle',
+'entry_popup'
 ]
 });
 
@@ -427,12 +509,11 @@ margin-bottom: 1px;
 }
 .entrySelectedCategory#entryCategoryAPI {
 background-image: url(/lib/entry-js/images/hardware_on.svg);
-background-color: #000;
-border-color: #000;
+background-color: #e3591e;
+border-color: #e3591e;
 color: #ffff;
 }
 </style>
 `)
 
-
-$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.0"),console.log("스페셜블럭 작동이 시작되었습니다.");
+$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.1"),console.log("스페셜블럭 작동이 시작되었습니다.");
