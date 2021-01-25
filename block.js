@@ -521,9 +521,9 @@ margin-bottom: 1px;
 background-image: url(/lib/entry-js/images/hardware_on.svg);
 background-color: #0000;
 border-color: #0000;
-color: #ffff;
+color: #e6a337;
 }
 </style>
 `)
 
-$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.3"),console.log("스페셜블럭 작동이 시작되었습니다.");
+$('#entryCategoryAPI').append('비공식'), alert("비공식블럭 작동이 시작되었습니다. 버전 1.3"),console.log("비공식블럭 작동이 시작되었습니다.");
