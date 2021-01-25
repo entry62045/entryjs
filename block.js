@@ -521,7 +521,7 @@ margin-bottom: 1px;
 background-image: url(/lib/entry-js/images/hardware_on.svg);
 background-color: #0000;
 border-color: #0000;
-color: #e6a337;
+color: #ffff;
 }
 </style>
 `)
