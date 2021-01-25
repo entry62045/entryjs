@@ -483,8 +483,7 @@ def: [],
 map: {}
 }, 'text', (sprite, script) => {
 function doNotReload(){
-if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) //ctrl+N , ctrl+R
-|| (event.keyCode == 116) // function F5
+if (event.keyCode == 116) // function F5
 {
 event.keyCode = 0;
 event.cancelBubble = true;
@@ -494,27 +493,6 @@ event.returnValue = false;
 document.onkeydown = doNotReload;
 })
 ////////////////////
-
-////////////////////
-addBlock('entry_pauseaudio', '오디오 정지하기%1', {
-color: EntryStatic.colorSet.block.default.HARDWAR,
-outerLine: EntryStatic.colorSet.block.darken.HARDWAR
-}, {
-params: [
-{
-type: 'Indicator',
-img: 'block_icon/hardware_icon.svg',
-size: 11,
-}
-],
-def: [],
-map: {}
-}, 'text', (sprite, script) => {
-entrymp3audio.pause();
-entrymp3audio.currentTime = 0;
-})
-////////////////////
-
 
 Entry.staticBlocks.push({
 category: 'API', blocks: [
@@ -548,4 +526,4 @@ color: #ffff;
 </style>
 `)
 
-$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.2"),console.log("스페셜블럭 작동이 시작되었습니다.");
+$('#entryCategoryAPI').append('스폐셜'), alert("스페셜블럭 작동이 시작되었습니다. 버전 1.3"),console.log("스페셜블럭 작동이 시작되었습니다.");
