@@ -358,7 +358,7 @@ const LibraryCreator = {
       // 카테고리 이름 적용
       $(`#entryCategory${category}`).append(text)
     }
-    console.log('%cEntBlocks v2.2%c\n\nEntBlocks는 MIT License를 따릅니다.\n%c\n공식 블로그:\n%chttps://entblocks.tistory.com', 'background-color: #007bff; color: #e9ecef; padding: 0 3rem; border-radius: 1.2rem 0; font-family: sans-serif; font-size: 2.5rem;', 'font-family: sans-serif; font-size: 1.2rem;', 'font-family: sans-serif; font-size: 1.2rem;', 'font-family: sans-serif; font-size: 1.1rem; color: #007bff;')
+    console.log('로딩을 시작합니다.')
   }
 }
 let blockPOST
@@ -1331,6 +1331,41 @@ const blocks = [
     class: 'text',
     func: async (sprite, script) => {
       return `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`
+    },
+  },
+  {
+    name: 'SearchGoogle',
+    template: '%1 내용을 구글에 검색하기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#FF6633',
+      darken: '#FF6633'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      SEARCHRESULT: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
+      return script.callReturn()
     },
   },
   {
