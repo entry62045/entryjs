@@ -354,7 +354,7 @@ const LibraryCreator = {
     if (typeof useWebGL == "undefined") {
       updateCategory(category)
       // 아이콘 적용
-      $('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other.svg);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other_selected.svg);background-color:#007bff;border-color:#006ce0;color:#fff}</style>`)
+      $('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other.svg);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other_selected.svg);background-color:#FFC000;border-color:#FFC000;color:#fff}</style>`)
       // 카테고리 이름 적용
       $(`#entryCategory${category}`).append(text)
     }
@@ -364,7 +364,7 @@ const LibraryCreator = {
 let blockPOST
 const blocks = [
   {
-    name: 'fetchBlocks',
+    name: 'webblocks',
     template: '%1',
     skeleton: 'basic_text',
     color: {
@@ -374,7 +374,7 @@ const blocks = [
     params: [
       {
         type: 'Text',
-        text: 'fetch',
+        text: 'Web',
         color: EntryStatic.colorSet.common.TEXT,
         align: 'center'
       }
@@ -382,6 +382,111 @@ const blocks = [
     def: [],
     map: {},
     class: 'text'
+  },
+  {
+    name: 'SearchGoogle',
+    template: '%1 내용을 구글에 검색하기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      SEARCHRESULT: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
+      return script.callReturn()
+    },
+  },
+  {
+    name: 'OpenUrl',
+    template: '%1 사이트 열기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['https://playentry.org']
+      },
+      null
+    ],
+    map: {
+      WEBSITE: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      open(script.getValue('WEBSITE', script))
+      return script.callReturn()
+    },
+  },
+  {
+    name: 'SetPageTitle',
+    template: '페이지 제목을 %1로 바꾸기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      PAGETITLE: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      document.title = script.getValue('PAGETITLE', script)
+      return script.callReturn()
+    },
   },
   {
     name: 'get',
@@ -1334,41 +1439,6 @@ const blocks = [
     },
   },
   {
-    name: 'SearchGoogle',
-    template: '%1 내용을 구글에 검색하기%2',
-    skeleton: 'basic',
-    color: {
-      default: '#FF6633',
-      darken: '#FF6633'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['엔트리']
-      },
-      null
-    ],
-    map: {
-      SEARCHRESULT: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
-      return script.callReturn()
-    },
-  },
-  {
     name: 'copy',
     template: '%1',
     skeleton: 'basic_text',
@@ -1391,4 +1461,4 @@ const blocks = [
   }
 ]
 
-LibraryCreator.start(blocks, 'API', '기타')
+LibraryCreator.start(blocks, 'API', '특급')
