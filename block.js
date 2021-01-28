@@ -721,8 +721,8 @@ const blocks = [
     },
   },
   {
-    name: 'ChangeEntryVar',
-    template: '엔트리 변수 %1 값을 %2 으로 변경%3',
+    name: 'BlockFindChange',
+    template: '블럭 감지 활성화(비공식로딩 변수 값을 1로 변경)%3',
     skeleton: 'basic',
     color: {
       default: '#1dbfa1',
@@ -744,23 +744,12 @@ const blocks = [
       }
     ],
     def: [
-      {
-        type: 'text',
-        params: [`변수이름`]
-      },
-      {
-        type: 'text',
-        params: ['0']
-      },
       null
     ],
-    map: {
-      ENTRYVARNAME: 0,
-      ENTRYVALUE: 1
-    },
+    map: {},
     class: 'text',
     func: async (sprite, script) => {
-      Entry.variableContainer.getVariableByName(script.getValue('ENTRYVARNAME', script)).value_ = script.getValue('ENTRYVALU', script)
+      Entry.variableContainer.getVariableByName('비공식로딩').value_ = 1
       return script.callReturn()
     },
   },
