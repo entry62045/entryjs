@@ -489,469 +489,19 @@ const blocks = [
     },
   },
   {
-    name: 'get',
-    template: '%1 가져오기 (GET)',
-    skeleton: 'basic_string_field',
+    name: 'GetPageTitle',
+    template: '페이지 제목',
+    skeleton: 'basic_string_fielld',
     color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['https://playentry.org/api/discuss/findNotice']
-      }
-    ],
-    map: {
-      APIURL: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let res = await fetch(script.getValue('APIURL', script))
-      let data = await res.json()
-      return data
-    },
-  },
-  {
-    name: 'post',
-    template: '%1에 %2 올리기 (POST)%3',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['https://playentry.org/api/discuss']
-      },
-      {
-        type: 'text',
-        params: [`{ "images": [], "category": "free", "title": "엔트리봇", "content": "사랑스러워", "groupNotice": false }`]
-      },
-      null
-    ],
-    map: {
-      APIURL: 0,
-      DATA: 1
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      if (confirm(`"올리기(POST) 요청" 을 허용하시겠습니까?\n내용: ${script.getValue('DATA', script)}`)) {
-        let res = await fetch(script.getValue('APIURL', script), {
-          method: 'POST',
-          body: script.getValue('DATA', script),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        blockPOST = await res.json()
-      }
-      return script.callReturn()
-    },
-  },
-  {
-    name: 'postData',
-    template: '올리기 응답',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
+      default: '#15b01a',
+      darken: '#15b01a'
     },
     params: [],
     def: [],
     map: {},
     class: 'text',
     func: async (sprite, script) => {
-      return blockPOST
-    },
-  },
-  {
-    name: 'arrayBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: '배열',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'arrayItem',
-    template: '배열 %1 의 %2 번째 항목',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`['1', '2']`]
-      },
-      {
-        type: 'text',
-        params: ['1']
-      }
-    ],
-    map: {
-      ARRAY: 0,
-      ITEM: 1
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let array = eval(script.getValue('ARRAY', script))
-      let done = array[script.getValue('ITEM', script) - 1]
-      return done
-    },
-  },
-  {
-    name: 'arrayLength',
-    template: '배열 %1 의 항목 수',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`['1', '2']`]
-      }
-    ],
-    map: {
-      ARRAY: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let done = eval(script.getValue('ARRAY', script)).length
-      return done
-    },
-  },
-  {
-    name: 'JSONBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: 'JSON',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'jsonKey',
-    template: 'JSON %1 의 %2 항목',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`{ "title": "Hello, world!" }`]
-      },
-      {
-        type: 'text',
-        params: ['title']
-      }
-    ],
-    map: {
-      JSON: 0,
-      KEY: 1
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let json = eval(script.getValue('JSON', script))
-      let done = json[script.getValue('KEY', script)]
-      return done
-    },
-  },
-  {
-    name: 'jsonLength',
-    template: 'JSON %1 의 항목 수',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`{ "title": "Hello, world!" }`]
-      }
-    ],
-    map: {
-      JSON: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let done = Object.keys(JSON.parse(script.getValue('JSON', script))).length
-      return done
-    },
-  },
-  {
-    name: 'toastBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: '토스트',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'toast',
-    template: '%1 제목과 %2 내용의 %3 토스트를 %4 출력하기%5',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Dropdown',
-        options: [
-          ['성공', 'success'],
-          ['경고', 'warning'],
-          ['오류', 'alert']
-        ],
-        fontSize: 11,
-        arrowColor: '#FFD974',
-        value: 'success'
-      },
-      {
-        type: 'Dropdown',
-        options: [
-          ['유지되게', 'true'],
-          ['잠시 뒤 사라지게', 'false']
-        ],
-        fontSize: 11,
-        arrowColor: '#FFD974',
-        value: 'true'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`알림`]
-      },
-      {
-        type: 'text',
-        params: [`엔트리`]
-      },
-      null,
-      null,
-      null
-    ],
-    map: {
-      TITLE: 0,
-      CONTENT: 1,
-      TYPE: 2,
-      HIDE: 3
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let hide
-      if (script.getValue('HIDE', script) == 'true') {
-        hide = true
-      } else {
-        hide = false
-      }
-      Entry.toast[script.getValue('TYPE', script)](script.getValue('TITLE', script), script.getValue('CONTENT', script), hide)
-      return script.callReturn()
-    },
-  },
-  {
-    name: 'popupBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: '팝업',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'popup',
-    template: '%1 제목과 %2 내용의 %3 테마 팝업 출력하기%4',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Dropdown',
-        options: [
-          ['기본', 'default'],
-          ['둥근', 'round'],
-          ['샌즈', 'sans'],
-          ['디스코드', 'discord'],
-        ],
-        fontSize: 11,
-        arrowColor: '#FFD974',
-        value: 'sans'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`알림`]
-      },
-      {
-        type: 'text',
-        params: [`엔트리`]
-      },
-      null,
-      null
-    ],
-    map: {
-      TITLE: 0,
-      CONTENT: 1,
-      THEME: 2
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      let theme
-      if (script.getValue('THEME', script) == 'default') {
-        theme = '<style>.Confirm-cssmodule-cancelButton-2bdHa{display: none !important;}</style>'
-      } else if (script.getValue('THEME', script) == 'round') {
-        theme = '<style>.Confirm-cssmodule-button-31i1a:not(.Confirm-cssmodule-cancelButton-2bdHa){background-color: #5096f5 !important;border-radius: 9999px !important;border: 0 !important;-webkit-box-shadow: 10px 10px 120px -18px rgba(80,150,245,0.54);-moz-box-shadow: 10px 10px 120px -18px rgba(80,150,245,0.54);box-shadow: 10px 10px 120px -18px rgba(80,150,245,0.54);}.Confirm-cssmodule-cancelButton-2bdHa{display: none !important;}.Confirm-cssmodule-confirm-FbkMi{border-radius: 2rem !important;background-size: 10rem;background-repeat: no-repeat;background-position: bottom left;background-color: white;}.Confirm-cssmodule-title-35Vpd{border-radius: 2rem 2rem 0 0 !important;background-color: #5096f5 !important;}.ModalView-cssmodule-modalView-25KwR .undefined{border-radius: 2rem !important;}.button.entryLmsClose{display: none !important;}.Confirm-cssmodule-confirm-FbkMi{min-height: 0 !important;}</style>'
-      } else if (script.getValue('THEME', script) == 'sans') {
-        theme = '<style>.Confirm-cssmodule-button-31i1a:not(.Confirm-cssmodule-cancelButton-2bdHa){background-color: #5096f5 !important;border-radius: 9999px !important;border: 0 !important;}.Confirm-cssmodule-cancelButton-2bdHa{display: none !important;}.Confirm-cssmodule-confirm-FbkMi{border-radius: 2rem !important;background-image: url(https://ww.namu.la/s/c80fdba0c6ddeb12406e44c16cb11af88a33a04e67b9a7a171a5112db448c41d505c52a9c7e01ddad827d0dabde3d1d1fd8608ff85e5a7bd771725283678b05f152596490383ef7e35908725a98cd327ade49b0cdec63e01e6fa9964be3b72c6);background-size: 7rem;background-repeat: no-repeat;background-position: bottom left;background-color: black;}.Confirm-cssmodule-title-35Vpd{border-radius: 2rem 2rem 0 0 !important;background-color: #2e2e2e !important;}.ModalView-cssmodule-modalView-25KwR .undefined{border-radius: 2rem !important;color: white !important;}.button.entryLmsClose{display: none !important;}</style>'
-      } else if (script.getValue('THEME', script) == 'discord') {
-        theme = '<style>.Confirm-cssmodule-button-31i1a:not(.Confirm-cssmodule-cancelButton-2bdHa){background-color: #7289da !important;border-radius: 5px !important;border: 0 !important;width: calc(402px - 40px) !important;}.Confirm-cssmodule-cancelButton-2bdHa{display: none !important;}.Confirm-cssmodule-confirm-FbkMi{border-radius: 5px !important;background-size: 10rem;background-repeat: no-repeat;background-position: bottom left;background-color: rgb(54, 57, 63);}.Confirm-cssmodule-title-35Vpd{border-radius: 5px 5px 0 0 !important;background-color: rgb(54, 57, 63) !important;font-size: 1rem !important;text-align: center !important;}.ModalView-cssmodule-modalView-25KwR .undefined{border-radius: 5px !important;color: white !important;}.button.entryLmsClose{display: none !important;}.entryLmsText{margin-top: 1rem !important;}.Confirm-cssmodule-content-NqT8W{margin-top: 1rem !important;marrgin-bottom: 1rem !important;}</style>'
-      }
-      entrylms.confirm({
-        outerHTML: `${theme}\n${script.getValue('CONTENT', script)}`,
-      }, script.getValue('TITLE', script), {
-        positiveButtonText: '확인'
-      })
-      return script.callReturn()
+      return document.title
     },
   },
   {
@@ -965,7 +515,7 @@ const blocks = [
     params: [
       {
         type: 'Text',
-        text: '콘솔',
+        text: 'Console',
         color: EntryStatic.colorSet.common.TEXT,
         class: 'bold',
         align: 'center'
@@ -980,8 +530,8 @@ const blocks = [
     template: '%1 내용을 브라우저 콘솔에 %2 하기%3',
     skeleton: 'basic',
     color: {
-      default: '#007bff',
-      darken: '#006ce0'
+      default: '#d15000',
+      darken: '#d15000'
     },
     params: [
       {
@@ -991,13 +541,13 @@ const blocks = [
       {
         type: 'Dropdown',
         options: [
-          ['log', 'log'],
-          ['warn', 'warn'],
-          ['error', 'error'],
-          ['info', 'info']
+          ['로그', 'log'],
+          ['경고', 'warn'],
+          ['오류', 'error'],
+          ['알림', 'info']
         ],
         fontSize: 11,
-        arrowColor: '#FFD974',
+        arrowColor: '#f78640',
         value: 'log'
       },
       {
@@ -1029,8 +579,8 @@ const blocks = [
     template: '브라우저 콘솔 모두 지우기%1',
     skeleton: 'basic',
     color: {
-      default: '#007bff',
-      darken: '#006ce0'
+      default: '#d15000',
+      darken: '#d15000'
     },
     params: [
       {
@@ -1050,66 +600,6 @@ const blocks = [
     },
   },
   {
-    name: 'entryConsole',
-    template: '%1 내용을 엔트리 콘솔에 출력하기%2',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`엔트리`]
-      },
-      null
-    ],
-    map: {
-      CONTENT: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      Entry.console.print(script.getValue('CONTENT', script))
-      return script.callReturn()
-    },
-  },
-  {
-    name: 'entryConsoleClear',
-    template: '엔트리 콘솔 모두 지우기%1',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      null
-    ],
-    map: {},
-    class: 'text',
-    func: async (sprite, script) => {
-      Entry.console.clear()
-      return script.callReturn()
-    },
-  },
-  {
     name: 'judgeBlocks',
     template: '%1',
     skeleton: 'basic_text',
@@ -1120,7 +610,7 @@ const blocks = [
     params: [
       {
         type: 'Text',
-        text: '판단',
+        text: 'Boost Mode',
         color: EntryStatic.colorSet.common.TEXT,
         class: 'bold',
         align: 'center'
@@ -1135,8 +625,8 @@ const blocks = [
     template: '부스트 모드가 켜져 있는가?',
     skeleton: 'basic_boolean_field',
     color: {
-      default: '#007bff',
-      darken: '#006ce0'
+      default: '#850bb5',
+      darken: '#850bb5'
     },
     params: [],
     def: [],
@@ -1147,63 +637,7 @@ const blocks = [
     },
   },
   {
-    name: 'JSUndefined',
-    template: 'JS 변수 %1의 값이 정의되지 않았는가?',
-    skeleton: 'basic_boolean_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-      type: 'Block',
-      accept: 'String'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`thoratica`]
-      },
-    ],
-    map: {
-      VARNAME: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      eval(`typeof ${script.getValue('VARNAME', script)}`)
-    },
-  },
-  {
-    name: 'entryUndefined',
-    template: '엔트리 변수 %1의 값이 정의되지 않았는가?',
-    skeleton: 'basic_boolean_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'String'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: [`thoratica`]
-      },
-    ],
-    map: {
-      VARNAME: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-        (typeof Entry.variableContainer.getVariableByName(script.getValue('VARNAME', script)) == 'undefined') ? true : false
-    },
-  },
-  {
-    name: 'calcBlocks',
+    name: 'ValueBlocks',
     template: '%1',
     skeleton: 'basic_text',
     color: {
@@ -1213,44 +647,7 @@ const blocks = [
     params: [
       {
         type: 'Text',
-        text: '계산',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'getBrowser',
-    template: '브라우저 이름',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [],
-    def: [],
-    map: {},
-    class: 'text',
-    func: async (sprite, script) => {
-      return Entry.userAgent
-    },
-  },
-  {
-    name: 'varBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: '자료',
+        text: 'Value',
         color: EntryStatic.colorSet.common.TEXT,
         class: 'bold',
         align: 'center'
@@ -1265,8 +662,8 @@ const blocks = [
     template: '변수 %1 값을 %2 으로 변경%3',
     skeleton: 'basic',
     color: {
-      default: '#007bff',
-      darken: '#006ce0'
+      default: '#1dbfa1',
+      darken: '#1dbfa1'
     },
     params: [
       {
@@ -1305,140 +702,6 @@ const blocks = [
     },
   },
   {
-    name: 'likeList',
-    template: '이 작품 좋아요 목록',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [],
-    def: [],
-    map: {},
-    class: 'text',
-    func: async (sprite, script) => {
-      let res = await fetch(`https://playentry.org/api/project/likes/${Entry.projectId}?noCache=1587602931964&rows=99999999&targetSubject=project&targetType=individual`)
-      let data = await res.json()
-      return data
-    },
-  },
-  {
-    name: 'webBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: '웹',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'openLink',
-    template: '새 탭에서 웹사이트 %1 열기%2',
-    skeleton: 'basic',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['https://www.thoratica.net']
-      },
-      null
-    ],
-    map: {
-      URL: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      if (confirm(`"새 탭에서 웹사이트 열기" 를 허용하시겠습니까?\nURL: ${script.getValue('URL', script)}`)) {
-        window.open(`https://block.blokode.xyz/urlCheck.html?goto=${script.getValue('URL', script)}`, '_blank').focus()
-      }
-      return script.callReturn()
-    },
-  },
-  {
-    name: 'helpBlocks',
-    template: '%1',
-    skeleton: 'basic_text',
-    color: {
-      default: EntryStatic.colorSet.common.TRANSPARENT,
-      darken: EntryStatic.colorSet.common.TRANSPARENT
-    },
-    params: [
-      {
-        type: 'Text',
-        text: 'POST 도우미',
-        color: EntryStatic.colorSet.common.TEXT,
-        class: 'bold',
-        align: 'center'
-      }
-    ],
-    def: [],
-    map: {},
-    class: 'text'
-  },
-  {
-    name: 'commuPostHelper',
-    template: '제목 %1 내용 %2 JSON',
-    skeleton: 'basic_string_field',
-    color: {
-      default: '#007bff',
-      darken: '#006ce0'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['엔트리봇']
-      },
-      {
-        type: 'text',
-        params: ['사랑스러워']
-      },
-    ],
-    map: {
-      TITLE: 0,
-      CONTENT: 1
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      return `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`
-    },
-  },
-  {
     name: 'copy',
     template: '%1',
     skeleton: 'basic_text',
@@ -1449,7 +712,7 @@ const blocks = [
     params: [
       {
         type: 'Text',
-        text: 'EntBlocks v2.2',
+        text: 'Made by 62045, using EntBlocks',
         color: EntryStatic.colorSet.common.TEXT,
         class: 'bold',
         align: 'center'
