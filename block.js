@@ -489,6 +489,41 @@ const blocks = [
     },
   },
   {
+    name: 'CopyText',
+    template: '%1 내용을 복사하기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      PAGETITLE: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      copy(script.getValue('PAGETITLE', script))
+      return script.callReturn()
+    },
+  },
+  {
     name: 'consoleBlocks',
     template: '%1',
     skeleton: 'basic_text',
@@ -682,6 +717,50 @@ const blocks = [
     class: 'text',
     func: async (sprite, script) => {
       eval(`${script.getValue('VARNAME', script)} = '${script.getValue('VALUE', script)}'`)
+      return script.callReturn()
+    },
+  },
+  {
+    name: 'changeVar',
+    template: '엔트리 변수 %1 값을 %2 으로 변경%3',
+    skeleton: 'basic',
+    color: {
+      default: '#1dbfa1',
+      darken: '#1dbfa1'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: [`변수이름`]
+      },
+      {
+        type: 'text',
+        params: ['0']
+      },
+      null
+    ],
+    map: {
+      ENTRYVARNAME: 0,
+      ENTRYVALUE: 1
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      Entry.variableContainer.getVariableByName(script.getValue('ENTRYVARNAME', script)).value_ = script.getValue('ENTRYVALU', script)
       return script.callReturn()
     },
   },
