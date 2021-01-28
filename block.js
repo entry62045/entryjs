@@ -721,7 +721,7 @@ const blocks = [
     },
   },
   {
-    name: 'changeVar',
+    name: 'ChangeEntryVar',
     template: '엔트리 변수 %1 값을 %2 으로 변경%3',
     skeleton: 'basic',
     color: {
