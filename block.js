@@ -489,22 +489,6 @@ const blocks = [
     },
   },
   {
-    name: 'GetPageTitle',
-    template: '페이지 제목',
-    skeleton: 'basic_string_fielld',
-    color: {
-      default: '#15b01a',
-      darken: '#15b01a'
-    },
-    params: [],
-    def: [],
-    map: {},
-    class: 'text',
-    func: async (sprite, script) => {
-      return document.title
-    },
-  },
-  {
     name: 'consoleBlocks',
     template: '%1',
     skeleton: 'basic_text',
