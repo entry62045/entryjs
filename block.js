@@ -489,8 +489,8 @@ const blocks = [
     },
   },
   {
-    name: 'CopyText',
-    template: '%1 내용을 복사하기%2',
+    name: 'OpenUserPage',
+    template: '%1 유저의 마이페이지 열기%2',
     skeleton: 'basic',
     color: {
       default: '#15b01a',
@@ -510,17 +510,47 @@ const blocks = [
     def: [
       {
         type: 'text',
-        params: ['엔트리']
+        params: ['62045']
       },
       null
     ],
     map: {
-      PAGETITLE: 0
+      USERNAME: 0
     },
     class: 'text',
     func: async (sprite, script) => {
-      copy(script.getValue('PAGETITLE', script))
+      open('https://playentry.org/' + script.getValue('USERNAME', script))
       return script.callReturn()
+    },
+  },
+  {
+    name: 'get',
+    template: '%1 가져오기 (GET)',
+    skeleton: 'basic_string_field',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['https://playentry.org/api/discuss/findNotice']
+      }
+    ],
+    map: {
+      APIURL: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      let res = await fetch(script.getValue('APIURL', script))
+      let data = await res.json()
+      return data
     },
   },
   {
