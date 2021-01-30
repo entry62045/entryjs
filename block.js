@@ -489,6 +489,23 @@ const blocks = [
     },
   },
   {
+    name: 'GetPageTitle',
+    template: '페이지 제목',
+    skeleton: 'basic_string_field',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [],
+    def: [],
+    map: {},
+    class: 'text',
+    func: async (sprite, script) => {
+      let pagetitle = document.title
+      return pagetitle
+    },
+  },
+  {
     name: 'OpenUserPage',
     template: '%1 유저의 마이페이지 열기%2',
     skeleton: 'basic',
@@ -551,6 +568,45 @@ const blocks = [
       let res = await fetch(script.getValue('APIURL', script))
       let data = await res.json()
       return data
+    },
+  },
+  {
+    name: 'jsonKey',
+    template: 'JSON %1 의 %2 항목',
+    skeleton: 'basic_string_field',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Block',
+        accept: 'string'
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: [`{ "title": "Hello, world!" }`]
+      },
+      {
+        type: 'text',
+        params: ['title']
+      }
+    ],
+    map: {
+      JSON: 0,
+      KEY: 1
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      let json = eval(script.getValue('JSON', script))
+      let done = json[script.getValue('KEY', script)]
+      return done
     },
   },
   {
