@@ -808,21 +808,13 @@ const blocks = [
   },
   {
     name: 'BlockFindChange',
-    template: '블럭 감지 활성화(비공식로딩 변수 값을 1로 변경)%3',
+    template: '블럭 감지 활성화(비공식로딩 변수 값을 1로 변경)%1',
     skeleton: 'basic',
     color: {
       default: '#1dbfa1',
       darken: '#1dbfa1'
     },
     params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Block',
-        accept: 'string'
-      },
       {
         type: 'Indicator',
         img: '',
