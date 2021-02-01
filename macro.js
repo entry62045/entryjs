@@ -6,8 +6,8 @@ function start() {
 var macrotime = 0;
 var setmacrotime = 0;
 macrotime = prompt("매크로 사용 시간 입력(취소 시 0 입력)");
-setmacrotime = time * 1000;
+setmacrotime = macrotime * 1000;
 if (setmacrotime != 0) {
-  console.log('매크로를 시작합니다.')
-  setInterval(start, setmacrotime)
+  console.log('매크로를 시작합니다.');
+  setInterval(start, setmacrotime);
 }
