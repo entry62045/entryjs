@@ -418,7 +418,7 @@ const LibraryCreator = {
       class: 'text',
       func: async (sprite, script) => { // 실행할 JS 코드
         // script.getValue('위에 map에서 설정한 변수 이름', script) 이 코드로 입력값 로드 가능
-        open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
+        open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
         return script.callReturn() // 일반 블럭 코드 뒤에는 반드시 붙여주세요
       },
     }

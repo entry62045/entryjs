@@ -1,6 +1,6 @@
 const LibraryCreator = {
   start: (blocksJSON, category, text) => {
-    let blockArray = new Array
+    let blockArray = new Array;
     // LibraryCreator 가져오기
     Entry.staticBlocks = [
       {
@@ -319,7 +319,7 @@ const LibraryCreator = {
           }
         }
         if (options.name) {
-          $(`#entryCategory${category}`)[0].innerText = options.name
+          $(`#entryCategory${category}`)[0].innerText = options.name;
         }
       }
     }
@@ -344,21 +344,21 @@ const LibraryCreator = {
     }
     // 블록 추가하기
     for (let i in blocksJSON) {
-      let block = blocksJSON[i]
-      blockArray.push(block.name)
-      addBlock(block.name, block.template, { color: block.color.default, outerLine: block.color.darken }, { params: block.params, define: block.def, map: block.map }, block.class, block.func, block.skeleton)
+      let block = blocksJSON[i];
+      blockArray.push(block.name);
+      addBlock(block.name, block.template, { color: block.color.default, outerLine: block.color.darken }, { params: block.params, define: block.def, map: block.map }, block.class, block.func, block.skeleton);
     }
     // 블록 반영
-    Entry.staticBlocks.push({ category: category, blocks: blockArray })
+    Entry.staticBlocks.push({ category: category, blocks: blockArray });
     // 카테고리 업데이트 (ws에서만)
     if (typeof useWebGL == "undefined") {
-      updateCategory(category)
+      updateCategory(category);
       // 아이콘 적용
-      $('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other.svg);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other_selected.svg);background-color:#FFC000;border-color:#FFC000;color:#fff}</style>`)
-      // 카테고리 이름 적용
-      $(`#entryCategory${category}`).append(text)
+      $('head').append(`<style>#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other.svg);background-repeat:no-repeat;margin-bottom:1px;background-position-y: 10px;background-size: 20px;}.entrySelectedCategory#entryCategory${category}{background-image:url(https://raw.githack.com/thoratica/EntBlocks/master/other_selected.svg);background-color:#FFC000;border-color:#FFC000;color:#fff}</style>`);
+      // 카테고리 이름 적용;
+      $(`#entryCategory${category}`).append(text);
     }
-    console.log('로딩을 시작합니다.')
+    console.log('로딩을 시작합니다.');
   }
 }
 let blockPOST
@@ -414,8 +414,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script))
-      return script.callReturn()
+      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
+      return script.callReturn();
     },
   },
   {
@@ -449,8 +449,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      open(script.getValue('WEBSITE', script))
-      return script.callReturn()
+      open(script.getValue('WEBSITE', script));
+      return script.callReturn();
     },
   },
   {
@@ -484,8 +484,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      document.title = script.getValue('PAGETITLE', script)
-      return script.callReturn()
+      document.title = script.getValue('PAGETITLE', script);
+      return script.callReturn();
     },
   },
   {
@@ -536,8 +536,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      open('https://playentry.org/' + script.getValue('USERNAME', script))
-      return script.callReturn()
+      open('https://playentry.org/' + script.getValue('USERNAME', script));
+      return script.callReturn();
     },
   },
   {
@@ -565,9 +565,9 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      let res = await fetch(script.getValue('APIURL', script))
-      let data = await res.json()
-      return data
+      let res = await fetch(script.getValue('APIURL', script));
+      let data = await res.json();
+      return data;
     },
   },
   {
@@ -604,9 +604,9 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      let json = eval(script.getValue('JSON', script))
-      let done = json[script.getValue('KEY', script)]
-      return done
+      let json = eval(script.getValue('JSON', script));
+      let done = json[script.getValue('KEY', script)];
+      return done;
     },
   },
   {
@@ -675,8 +675,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      console[script.getValue('TYPE', script)](script.getValue('CONTENT', script))
-      return script.callReturn()
+      console[script.getValue('TYPE', script)](script.getValue('CONTENT', script));
+      return script.callReturn();
     },
   },
   {
@@ -700,8 +700,8 @@ const blocks = [
     map: {},
     class: 'text',
     func: async (sprite, script) => {
-      console.clear()
-      return script.callReturn()
+      console.clear();
+      return script.callReturn();
     },
   },
   {
@@ -738,7 +738,7 @@ const blocks = [
     map: {},
     class: 'text',
     func: async (sprite, script) => {
-      (typeof useWebGL == 'undefined') ? false : useWebGL == true ? true : false
+      (typeof useWebGL == 'undefined') ? false : useWebGL == true ? true : false;
     },
   },
   {
@@ -802,8 +802,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      eval(`${script.getValue('VARNAME', script)} = '${script.getValue('VALUE', script)}'`)
-      return script.callReturn()
+      eval(`${script.getValue('VARNAME', script)} = '${script.getValue('VALUE', script)}'`);
+      return script.callReturn();
     },
   },
   {
@@ -827,8 +827,8 @@ const blocks = [
     map: {},
     class: 'text',
     func: async (sprite, script) => {
-      Entry.variableContainer.getVariableByName('비공식로딩').value_ = 1
-      return script.callReturn()
+      Entry.variableContainer.getVariableByName('비공식로딩').value_ = 1;
+      return script.callReturn();
     },
   },
   {
@@ -854,4 +854,4 @@ const blocks = [
   }
 ]
 
-LibraryCreator.start(blocks, 'API', '특급')
+LibraryCreator.start(blocks, 'API', '특급');
