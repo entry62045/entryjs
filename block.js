@@ -549,18 +549,18 @@ const blocks = [
 		name: 'JsonBlocks',
 		template: '%1',
 		skeleton: 'basic_text',
-		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			color: {
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Json',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Json',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -571,29 +571,29 @@ const blocks = [
 		template: '%1 가져오기 (GET)',
 		skeleton: 'basic_string_field',
 		color: {
-		default: '#383838',
-		darken: '#383838'
+			default: '#383838',
+			darken: '#383838'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: ['https://playentry.org/api/discuss/findNotice']
-		}
+			{
+				type: 'text',
+				params: ['https://playentry.org/api/discuss/findNotice']
+			}
 		],
 		map: {
-		APIURL: 0
+			APIURL: 0
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		let res = await fetch(script.getValue('APIURL', script));
-		let data = await res.json();
-		return data;
+			let res = await fetch(script.getValue('APIURL', script));
+			let data = await res.json();
+			return data;
 		},
 	},
 	{
@@ -601,38 +601,38 @@ const blocks = [
 		template: 'JSON %1 의 %2 항목',
 		skeleton: 'basic_string_field',
 		color: {
-		default: '#383838',
-		darken: '#383838'
+			default: '#383838',
+			darken: '#383838'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Block',
-			accept: 'string'
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Block',
+				accept: 'string'
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: [`{ "title": "Hello, world!" }`]
-		},
-		{
-			type: 'text',
-			params: ['title']
-		}
+			{
+				type: 'text',
+				params: [`{ "title": "Hello, world!" }`]
+			},
+			{
+				type: 'text',
+				params: ['title']
+			}
 		],
 		map: {
-		JSON: 0,
-		KEY: 1
+			JSON: 0,
+			KEY: 1
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		let json = eval(script.getValue('JSON', script));
-		let done = json[script.getValue('KEY', script)];
-		return done;
+			let json = eval(script.getValue('JSON', script));
+			let done = json[script.getValue('KEY', script)];
+			return done;
 		},
 	},
 	{
@@ -640,17 +640,17 @@ const blocks = [
 		template: '%1',
 		skeleton: 'basic_text',
 		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Search',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Search',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -661,34 +661,34 @@ const blocks = [
 		template: '%1 내용을 구글에 검색하기%2',
 		skeleton: 'basic',
 		color: {
-		default: '#33aa5f',
-		darken: '#33aa5f'
+			default: '#33aa5f',
+			darken: '#33aa5f'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: ['엔트리']
-		},
-		null
+			{
+				type: 'text',
+				params: ['엔트리']
+			},
+			null
 		],
 		map: {
-		SEARCHRESULT: 0
+			SEARCHRESULT: 0
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
-		return script.callReturn();
+			open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
+			return script.callReturn();
 		},
 	},
 	{
@@ -696,34 +696,34 @@ const blocks = [
 		template: '%1 내용을 엔트리 커뮤니티 엔트리 이야기에 검색하기%2',
 		skeleton: 'basic',
 		color: {
-		default: '#33aa5f',
-		darken: '#33aa5f'
+			default: '#33aa5f',
+			darken: '#33aa5f'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: ['엔트리']
-		},
-		null
+			{
+				type: 'text',
+				params: ['엔트리']
+			},
+			null
 		],
 		map: {
-		SEARCHRESULT1: 0
+			SEARCHRESULT1: 0
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		open('https://playentry.org/ds#!/free?title=' + script.getValue('SEARCHRESULT1', script) + '&search_title=' + script.getValue('SEARCHRESULT1', script) + '&sort=created&rows=20&page=1');
-		return script.callReturn();
+			open('https://playentry.org/ds#!/free?title=' + script.getValue('SEARCHRESULT1', script) + '&search_title=' + script.getValue('SEARCHRESULT1', script) + '&sort=created&rows=20&page=1');
+			return script.callReturn();
 		},
 	},
 	{
@@ -731,17 +731,17 @@ const blocks = [
 		template: '%1',
 		skeleton: 'basic_text',
 		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Console',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Console',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -752,48 +752,48 @@ const blocks = [
 		template: '%1 내용을 브라우저 콘솔에 %2 하기%3',
 		skeleton: 'basic',
 		color: {
-		default: '#d15000',
-		darken: '#d15000'
+			default: '#d15000',
+			darken: '#d15000'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Dropdown',
-			options: [
-			['로그', 'log'],
-			['경고', 'warn'],
-			['오류', 'error'],
-			['알림', 'info']
-			],
-			fontSize: 11,
-			arrowColor: '#f78640',
-			value: 'log'
-		},
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Dropdown',
+				options: [
+					['로그', 'log'],
+					['경고', 'warn'],
+					['오류', 'error'],
+					['알림', 'info']
+				],
+				fontSize: 11,
+				arrowColor: '#f78640',
+				value: 'log'
+			},
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: [`엔트리`]
-		},
-		null,
-		null
+			{
+				type: 'text',
+				params: [`엔트리`]
+			},
+			null,
+			null
 		],
 		map: {
-		CONTENT: 0,
-		TYPE: 1
+			CONTENT: 0,
+			TYPE: 1
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		console[script.getValue('TYPE', script)](script.getValue('CONTENT', script));
-		return script.callReturn();
+			console[script.getValue('TYPE', script)](script.getValue('CONTENT', script));
+			return script.callReturn();
 		},
 	},
 	{
@@ -801,24 +801,24 @@ const blocks = [
 		template: '브라우저 콘솔 모두 지우기%1',
 		skeleton: 'basic',
 		color: {
-		default: '#d15000',
-		darken: '#d15000'
+			default: '#d15000',
+			darken: '#d15000'
 		},
 		params: [
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		null
+			null
 		],
 		map: {},
 		class: 'text',
 		func: async (sprite, script) => {
-		console.clear();
-		return script.callReturn();
+			console.clear();
+			return script.callReturn();
 		},
 	},
 	{
@@ -826,17 +826,17 @@ const blocks = [
 		template: '%1',
 		skeleton: 'basic_text',
 		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Boost Mode',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Boost Mode',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -847,15 +847,15 @@ const blocks = [
 		template: '부스트 모드가 켜져 있는가?',
 		skeleton: 'basic_boolean_field',
 		color: {
-		default: '#850bb5',
-		darken: '#850bb5'
+			default: '#850bb5',
+			darken: '#850bb5'
 		},
 		params: [],
 		def: [],
 		map: {},
 		class: 'text',
 		func: async (sprite, script) => {
-		(typeof useWebGL == 'undefined') ? false : useWebGL == true ? true : false;
+			(typeof useWebGL == 'undefined') ? false : useWebGL == true ? true : false;
 		},
 	},
 	{
@@ -863,17 +863,17 @@ const blocks = [
 		template: '%1',
 		skeleton: 'basic_text',
 		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Value',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Value',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -884,43 +884,43 @@ const blocks = [
 		template: '변수 %1 값을 %2 으로 변경%3',
 		skeleton: 'basic',
 		color: {
-		default: '#1dbfa1',
-		darken: '#1dbfa1'
+			default: '#1dbfa1',
+			darken: '#1dbfa1'
 		},
 		params: [
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Block',
-			accept: 'string'
-		},
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Block',
+				accept: 'string'
+			},
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		{
-			type: 'text',
-			params: [`user.username`]
-		},
-		{
-			type: 'text',
-			params: ['entry']
-		},
-		null
+			{
+				type: 'text',
+				params: [`user.username`]
+			},
+			{
+				type: 'text',
+				params: ['entry']
+			},
+			null
 		],
 		map: {
-		VARNAME: 0,
-		VALUE: 1
+			VARNAME: 0,
+			VALUE: 1
 		},
 		class: 'text',
 		func: async (sprite, script) => {
-		eval(`${script.getValue('VARNAME', script)} = '${script.getValue('VALUE', script)}'`);
-		return script.callReturn();
+			eval(`${script.getValue('VARNAME', script)} = '${script.getValue('VALUE', script)}'`);
+			return script.callReturn();
 		},
 	},
 	{
@@ -928,24 +928,24 @@ const blocks = [
 		template: '블럭 감지 활성화(비공식로딩 변수 값을 1로 변경)%1',
 		skeleton: 'basic',
 		color: {
-		default: '#1dbfa1',
-		darken: '#1dbfa1'
+			default: '#1dbfa1',
+			darken: '#1dbfa1'
 		},
 		params: [
-		{
-			type: 'Indicator',
-			img: '',
-			size: 11,
-		}
+			{
+				type: 'Indicator',
+				img: '',
+				size: 11,
+			}
 		],
 		def: [
-		null
+			null
 		],
 		map: {},
 		class: 'text',
 		func: async (sprite, script) => {
-		Entry.variableContainer.getVariableByName('비공식로딩').value_ = 1;
-		return script.callReturn();
+			Entry.variableContainer.getVariableByName('비공식로딩').value_ = 1;
+			return script.callReturn();
 		},
 	},
 	{
@@ -953,17 +953,17 @@ const blocks = [
 		template: '%1',
 		skeleton: 'basic_text',
 		color: {
-		default: EntryStatic.colorSet.common.TRANSPARENT,
-		darken: EntryStatic.colorSet.common.TRANSPARENT
+			default: EntryStatic.colorSet.common.TRANSPARENT,
+			darken: EntryStatic.colorSet.common.TRANSPARENT
 		},
 		params: [
-		{
-			type: 'Text',
-			text: 'Made by 62045, using EntBlocks',
-			color: EntryStatic.colorSet.common.TEXT,
-			class: 'bold',
-			align: 'center'
-		}
+			{
+				type: 'Text',
+				text: 'Made by 62045, using EntBlocks',
+				color: EntryStatic.colorSet.common.TEXT,
+				class: 'bold',
+				align: 'center'
+			}
 		],
 		def: [],
 		map: {},
@@ -972,3 +972,5 @@ const blocks = [
 ]
 
 LibraryCreator.start(blocks, 'API', '특급');
+console.log('62045의 특급 블럭을 사용해주셔서 감사합니다.');
+console.log('버전은 2.0입니다.');
