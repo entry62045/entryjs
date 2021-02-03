@@ -972,5 +972,4 @@ const blocks = [
 ]
 
 LibraryCreator.start(blocks, 'API', '특급');
-console.log('62045의 특급 블럭을 사용해주셔서 감사합니다.');
-console.log('버전은 2.0입니다.');
+console.log('%c62045의 특급 블럭을 사용해주셔서 감사합니다. 버전은 2.0입니다.', 'font-family: 맑은 고딕; color: #ffffff; font-size: 22px; padding : 20px 20px');
