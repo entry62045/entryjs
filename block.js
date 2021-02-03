@@ -449,8 +449,8 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      if (prompt(script.getValue('WEBSITE', script) + ' 사이트를 열려 합니다. 여시겠습니까?')) {
-        open(script.getValue('WEBSITE', script));
+      if (prompt(script.getValue('WEBSITESAFEMODE', script) + ' 사이트를 열려 합니다. 여시겠습니까?')) {
+        open(script.getValue('WEBSITESAFEMODE', script));
       }
       else {
         alert('사용자가 취소를 클릭하여 열기가 취소되었습니다.');
@@ -722,7 +722,7 @@ const blocks = [
     },
     class: 'text',
     func: async (sprite, script) => {
-      open('https://playentry.org/ds#!/free?search_title=' + script.getValue('SEARCHRESULT', script));
+      open('https://playentry.org/ds#!/free?search_title=' + script.getValue('SEARCHRESULT1', script));
       return script.callReturn();
     },
   },
