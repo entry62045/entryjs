@@ -384,41 +384,6 @@ const blocks = [
     class: 'text'
   },
   {
-    name: 'SearchGoogle',
-    template: '%1 내용을 구글에 검색하기%2',
-    skeleton: 'basic',
-    color: {
-      default: '#15b01a',
-      darken: '#15b01a'
-    },
-    params: [
-      {
-        type: 'Block',
-        accept: 'string'
-      },
-      {
-        type: 'Indicator',
-        img: '',
-        size: 11,
-      }
-    ],
-    def: [
-      {
-        type: 'text',
-        params: ['엔트리']
-      },
-      null
-    ],
-    map: {
-      SEARCHRESULT: 0
-    },
-    class: 'text',
-    func: async (sprite, script) => {
-      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
-      return script.callReturn();
-    },
-  },
-  {
     name: 'OpenUrl',
     template: '%1 사이트 열기%2',
     skeleton: 'basic',
@@ -450,6 +415,46 @@ const blocks = [
     class: 'text',
     func: async (sprite, script) => {
       open(script.getValue('WEBSITE', script));
+      return script.callReturn();
+    },
+  },
+  {
+    name: 'OpenUrlSafeMode',
+    template: '%1 사이트 열기(안전모드)%2',
+    skeleton: 'basic',
+    color: {
+      default: '#15b01a',
+      darken: '#15b01a'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['https://playentry.org']
+      },
+      null
+    ],
+    map: {
+      WEBSITESAFEMODE: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      if (prompt(script.getValue('WEBSITE', script) + ' 사이트를 열려 합니다. 여시겠습니까?')) {
+        open(script.getValue('WEBSITE', script));
+      }
+      else {
+        alert('사용자가 취소를 클릭하여 열기가 취소되었습니다.');
+      }
       return script.callReturn();
     },
   },
@@ -541,12 +546,33 @@ const blocks = [
     },
   },
   {
+    name: 'JsonBlocks',
+    template: '%1',
+    skeleton: 'basic_text',
+    color: {
+      default: EntryStatic.colorSet.common.TRANSPARENT,
+      darken: EntryStatic.colorSet.common.TRANSPARENT
+    },
+    params: [
+      {
+        type: 'Text',
+        text: 'Json',
+        color: EntryStatic.colorSet.common.TEXT,
+        class: 'bold',
+        align: 'center'
+      }
+    ],
+    def: [],
+    map: {},
+    class: 'text'
+  },
+  {
     name: 'get',
     template: '%1 가져오기 (GET)',
     skeleton: 'basic_string_field',
     color: {
-      default: '#15b01a',
-      darken: '#15b01a'
+      default: '#383838',
+      darken: '#383838'
     },
     params: [
       {
@@ -575,8 +601,8 @@ const blocks = [
     template: 'JSON %1 의 %2 항목',
     skeleton: 'basic_string_field',
     color: {
-      default: '#15b01a',
-      darken: '#15b01a'
+      default: '#383838',
+      darken: '#383838'
     },
     params: [
       {
@@ -607,6 +633,97 @@ const blocks = [
       let json = eval(script.getValue('JSON', script));
       let done = json[script.getValue('KEY', script)];
       return done;
+    },
+  },
+  {
+    name: 'SearchBlocks',
+    template: '%1',
+    skeleton: 'basic_text',
+    color: {
+      default: EntryStatic.colorSet.common.TRANSPARENT,
+      darken: EntryStatic.colorSet.common.TRANSPARENT
+    },
+    params: [
+      {
+        type: 'Text',
+        text: 'Search',
+        color: EntryStatic.colorSet.common.TEXT,
+        class: 'bold',
+        align: 'center'
+      }
+    ],
+    def: [],
+    map: {},
+    class: 'text'
+  },
+  {
+    name: 'SearchGoogle',
+    template: '%1 내용을 구글에 검색하기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#33aa5f',
+      darken: '#33aa5f'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      SEARCHRESULT: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      open('https://google.com/search?q=' + script.getValue('SEARCHRESULT', script));
+      return script.callReturn();
+    },
+  },
+  {
+    name: 'SearchEntryCommunityFree',
+    template: '%1 내용을 엔트리 커뮤니티 엔트리 이야기에 검색하기%2',
+    skeleton: 'basic',
+    color: {
+      default: '#33aa5f',
+      darken: '#33aa5f'
+    },
+    params: [
+      {
+        type: 'Block',
+        accept: 'string'
+      },
+      {
+        type: 'Indicator',
+        img: '',
+        size: 11,
+      }
+    ],
+    def: [
+      {
+        type: 'text',
+        params: ['엔트리']
+      },
+      null
+    ],
+    map: {
+      SEARCHRESULT1: 0
+    },
+    class: 'text',
+    func: async (sprite, script) => {
+      open('https://playentry.org/ds#!/free?search_title=' + script.getValue('SEARCHRESULT', script));
+      return script.callReturn();
     },
   },
   {
