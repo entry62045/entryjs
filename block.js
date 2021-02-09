@@ -663,7 +663,7 @@ const blocks = [
 			let blockeddata = await blockedres.json();
 			let blockedjson = eval(blockeddata);
 			let blockeddone = blockedjson['isBlocked'];
-			(blockeddone == 'true') ? true : false;
+			(blockeddone == true) ? true : false;
 		},
 	},
 	{
