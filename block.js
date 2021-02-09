@@ -397,7 +397,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -432,7 +432,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -472,7 +472,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -524,7 +524,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -702,7 +702,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -737,7 +737,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -805,7 +805,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -838,7 +838,7 @@ const blocks = [
 		params: [
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -867,7 +867,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -969,7 +969,7 @@ const blocks = [
 			},
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -1005,7 +1005,7 @@ const blocks = [
 		params: [
 			{
 				type: 'Indicator',
-				img: '',
+				img: 'block_icon/start_icon_play.svg',
 				size: 11,
 			}
 		],
@@ -1043,4 +1043,4 @@ const blocks = [
 ]
 
 LibraryCreator.start(blocks, 'API', '특급');
-console.log('%c62045의 특급 블럭을 사용해주셔서 감사합니다. 버전은 2.2.1입니다.', 'font-family: 맑은 고딕; color: #ffffff; background-color: #66AA33; font-size: 22px; padding : 20px 20px');
+console.log('%cExpress Block 2.3%c\n\n62045의 특급 블럭을 사용해주셔서 감사합니다.\n이 블럭은 tica_님의 EntBlocks 2.2를 사용하여 제작하였습니다.\nhttps://github.com/thoratica/entblocks\n\n%c엔트리: https://playentry.org/62045\nGitHub: https://github.com/entry62045\n특급 블럭: https://github.com/entry62045/entryjs', 'font-family: 맑은 고딕; color: #ffffff; background-color: #66AA33; border-radius: 10px; font-size: 26px; padding : 20px 30px', 'color: #000000; background-color: #FFFFFF; font-size: 18px;', 'color: #000000; background-color: #FFFFFF; font-size: 16px;');
