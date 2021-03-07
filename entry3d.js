@@ -1,5 +1,7 @@
 async function load() {
 	await import('https://threejs.org/build/three.min.js');
+	var script = document.body.createElement('script');
+	script.src = 'https://threejs.org/build/three.min.js';
 }
 function main() {
 	const canvas = document.querySelector('#entryCanvas');
