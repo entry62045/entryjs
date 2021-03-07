@@ -6,7 +6,7 @@ async function load() {
 function main() {
 	const canvas = document.querySelector('#entryCanvas');
 	try {
-		const renderer = new THREE.WebGLRenderer({canvas, antialias: true, preserveDrawingBuffer: true});
+		const renderer = new THREE.WebGLRenderer({canvas});
 	}
 	catch {
 		alert('WebGL을 지원하지 않습니다.');
@@ -31,6 +31,21 @@ function main() {
 	light.position.set(-1, 2, 4);
 	scene.add(light);
 	renderer.render(scene, camera);
+	function resizeRendererToDisplaySize(renderer) {
+		const canvas = renderer.domElement;
+		const width = canvas.clientWidth;
+		const height = canvas.clientHeight;
+		const needResize = canvas.width !== width || canvas.height !== height;
+		if (needResize) {
+			renderer.setSize(width, height, false);
+		}
+		return needResize;
+	}
+	if (resizeRendererToDisplaySize(renderer)) {
+		const canvas = renderer.domElement;
+		camera.aspect = canvas.clientWidth / canvas.clientHeight;
+		camera.updateProjectionMatrix();
+	}
 	function render(time) {
 		time *= 0.001;  // 시간을 초로 변환
 		
@@ -45,3 +60,4 @@ function main() {
 }
 load();
 main();
+console.log('Entry3D Beta 2, Made by entry62045');
