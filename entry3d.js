@@ -7,7 +7,7 @@ function main() {
 		const renderer = new THREE.WebGLRenderer({canvas, antialias: true, preserveDrawingBuffer: true});
 	}
 	catch {
-		alert('WebGl을 지원하지 않습니다.');
+		alert('WebGL을 지원하지 않습니다.');
 	}
 	const fov = 75;
 	const aspect = 2;  // 캔버스 기본값
